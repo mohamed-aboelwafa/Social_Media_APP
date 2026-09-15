@@ -1,0 +1,388 @@
+/* =================================================================== */
+/* GLOBAL STYLES & VARIABLES                      */
+/* =================================================================== */
+
+:root {
+    --bg-color: #121212;
+    /* Very dark grey, not pure black */
+    --surface-color: #1E1E1E;
+    /* Color for cards, forms */
+    --primary-color: #29b6f6;
+    /* A vibrant light blue for accents */
+    --primary-variant-color: #0086c3;
+    --text-primary: #E0E0E0;
+    /* Light grey for primary text */
+    --text-secondary: #A0A0A0;
+    /* Dimmer grey for secondary text */
+    --border-color: #333333;
+    --sent-bubble-bg: #0d47a1;
+    /* Dark blue for sent messages */
+    --received-bubble-bg: #37474f;
+    /* Dark grey/blue for received messages */
+    --hover-color: #2c2c2c;
+}
+
+/* Applying a modern font and basic resets */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar for a modern look */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+#parent-dev {
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--surface-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #555 var(--surface-color);
+}
+
+
+/* =================================================================== */
+/* LOGIN PAGE                               */
+/* =================================================================== */
+
+html, body {
+    height: 100%;
+}
+
+body.bg-dark {
+    background-color: var(--bg-color) !important;
+}
+
+.myForm {
+    background-color: var(--surface-color);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 450px;
+    width: 100%;
+}
+
+.myForm h1.text-light {
+    color: var(--text-primary) !important;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.form-control {
+    background-color: #2a2a2a;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control::placeholder {
+    color: var(--text-secondary);
+}
+
+.form-control:focus {
+    background-color: #2a2a2a;
+    color: var(--text-primary);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(41, 182, 246, 0.2);
+    outline: none;
+}
+
+#login.btn.btn-info {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    font-weight: bold;
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    margin-top: 1rem;
+}
+
+#login.btn.btn-info:hover {
+    background-color: var(--primary-variant-color);
+    border-color: var(--primary-variant-color);
+}
+
+
+/* =================================================================== */
+/* CHAT PAGE                              */
+/* =================================================================== */
+
+.p-2.py-3 {
+    padding: 2rem !important;
+    display: flex;
+    flex-direction: column;
+    /* Stack header and main app */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.row.p-2 {
+    /* This is the header row */
+    padding: 1rem !important;
+    background-color: var(--surface-color);
+    width: 100%;
+    max-width: 95%;
+    margin: 0 auto 1.5rem auto;
+    /* Center header and add margin below */
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+}
+
+.profileImage {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+}
+
+#userName {
+    color: var(--text-primary) !important;
+    margin: 0;
+    padding: 0 !important;
+    font-size: 1.5rem;
+}
+
+.container.p-5.my-5 {
+    max-width: 95%;
+    height: 80vh;
+    /* Adjusted height */
+    padding: 0 !important;
+    margin: 0 auto !important;
+    display: flex;
+    background-color: var(--surface-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+.container.p-5.my-5>.row {
+    width: 100%;
+    margin: 0;
+}
+
+/* --- Sidebar (Friends & Groups) --- */
+/* --- Sidebar (Friends & Groups) --- */
+.col-md-6:last-child {
+    background-color: #2a2a2a;
+    border-left: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: row;
+    /* <<< تم التغيير من column إلى row */
+    padding: 0 !important;
+}
+
+/* هذه قاعدة جديدة لتقسيم المساحة بين قسم الأصدقاء والمجموعات */
+.col-md-6:last-child>div {
+    flex: 1;
+    /* تجعل كل قسم يأخذ نصف المساحة المتاحة */
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    /* ضروري لعمل الـ flexbox بشكل صحيح */
+}
+
+/* إضافة خط فاصل بين القائمتين لمظهر أفضل */
+.col-md-6:last-child .groups {
+    border-left: 1px solid var(--border-color);
+}
+
+.groupsHead {
+    padding: 1.2rem;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chatUsers {
+    border: none !important;
+    padding: 0.5rem !important;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.chatUser {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 0.25rem 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.chatUser:hover {
+    background-color: var(--hover-color);
+}
+
+.chatImage {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.chatUser .ps-2 {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* --- Chat Window (Main Content) --- */
+.col-md-6:first-child {
+    display: flex;
+    flex-direction: column;
+    padding: 0 !important;
+}
+
+.col-md-6:first-child h2 {
+    display: none;
+}
+
+.chatContainer {
+    border: none !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.messageList {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+.messageList .me, .messageList .myFriend {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+    max-width: 75%;
+}
+
+.messageList .me {
+    margin-left: auto;
+    flex-direction: row-reverse;
+}
+
+.messageList .myFriend {
+    margin-right: auto;
+}
+
+.messageList span {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    border-radius: 18px;
+    line-height: 1.4;
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.messageList .me span {
+    background-color: var(--sent-bubble-bg);
+    border-bottom-right-radius: 4px;
+}
+
+.messageList .myFriend span {
+    background-color: var(--received-bubble-bg);
+    border-bottom-left-radius: 4px;
+}
+
+.messageList .me .chatImage {
+    margin-left: 0.75rem;
+    margin-right: 0;
+}
+
+.messageList .myFriend .chatImage {
+    margin-right: 0.75rem;
+    margin-left: 0;
+}
+
+.noResult span {
+    color: var(--text-secondary);
+    width: 100%;
+    text-align: center;
+}
+
+/* Chat Input Form */
+.messageForm {
+    background-color: #2a2a2a;
+    padding: 1rem !important;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+}
+
+#messageBody {
+    background-color: #3a3a3a;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.75rem 1.2rem;
+    border-radius: 25px;
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#messageBody::placeholder {
+    color: var(--text-secondary);
+}
+
+#messageBody:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(41, 182, 246, 0.2);
+}
+
+#sendMessage.btn.btn-success {
+    background-color: var(--primary-color);
+    border: none;
+
+    /* التغيير هنا: لجعل الـ border-radius مثل زر الـ Sign-in */
+    border-radius: 8px;
+
+    padding: 0.75rem 1.2rem;
+    /* تم تعديل الـ padding ليتناسق مع الحجم الجديد */
+    margin-left: 0.75rem;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+}
+
+#sendMessage.btn.btn-success:hover {
+    background-color: var(--primary-variant-color);
+}
+
+/* General utilities */
+.closeSpan, #notifyTone {
+    display: none;
+}
